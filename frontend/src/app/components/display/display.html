@@ -1,0 +1,41 @@
+<div class="container-fluid vh-100 bg-dark text-white">
+  <div class="row h-100">
+    
+    <div class="col-md-8 d-flex flex-column align-items-center justify-content-center bg-primary text-white border-end border-5 border-white">
+      
+      <h2 class="text-uppercase mb-4 opacity-75" style="letter-spacing: 5px;">Now Serving</h2>
+      
+      <div *ngIf="currentServing; else noServing">
+        <h1 class="display-1 fw-bold" style="font-size: 10rem;">
+          {{ currentServing.tokenNumber }}
+        </h1>
+      </div>
+
+      <ng-template #noServing>
+        <h1 class="display-1 fw-bold opacity-50">---</h1>
+        <p class="lead mt-3">Please wait...</p>
+      </ng-template>
+
+    </div>
+
+    <div class="col-md-4 d-flex flex-column pt-5 px-4 bg-secondary">
+      
+      <h3 class="border-bottom border-2 pb-3 mb-4 text-warning">UP NEXT</h3>
+      
+      <div class="d-flex flex-column gap-3">
+        <div *ngFor="let token of pendingTokens" class="card bg-dark text-white border-0 shadow-sm">
+          <div class="card-body py-3 d-flex align-items-center">
+            <h2 class="mb-0 fw-bold">{{ token.tokenNumber }}</h2>
+            <span class="ms-auto badge bg-light text-dark">Waiting</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="pendingTokens.length === 0" class="text-white-50 mt-5 text-center">
+        <p>No other customers waiting.</p>
+      </div>
+
+    </div>
+
+  </div>
+</div>

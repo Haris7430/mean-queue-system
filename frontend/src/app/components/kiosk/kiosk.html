@@ -1,0 +1,28 @@
+<div class="container d-flex flex-column align-items-center justify-content-center vh-100 bg-light">
+  
+  <div class="card shadow-lg p-5 text-center" style="min-width: 400px;">
+    
+    <h2 class="mb-4 text-uppercase text-secondary">Self Service Kiosk</h2>
+    
+    @if (latestToken) {
+      <div class="animate-fade">
+        <div class="alert alert-success py-4">
+          <p class="mb-0">Your Token Number</p>
+          <h1 class="display-1 fw-bold">{{ latestToken }}</h1>
+        </div>
+        <p class="text-muted mt-3">Please wait for your number...</p>
+      </div>
+    } 
+    @else {
+      <p class="lead mb-4">Click below to join the queue</p>
+      
+      <button class="btn btn-primary btn-lg w-100 py-4 fw-bold" 
+              style="font-size: 1.5rem;" 
+              (click)="generateToken()" 
+              [disabled]="isLoading">
+        {{ isLoading ? 'Printing...' : 'GET TOKEN' }}
+      </button>
+    }
+
+  </div>
+</div>
